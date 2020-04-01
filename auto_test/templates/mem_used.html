@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>内存使用监控</title> 
+</head>
+<body>
+<style>
+.mem_summary
+{float:left;
+width:300px;
+}
+.title_line
+{
+clear:both;
+margin-bottom:2px;
+background-color:#CD2626;
+text-align:center;
+}
+.mem_detail
+{float:left;
+width:300px;
+}
+</style>
+<h1 class=title_line> {{dev_id|safe}}设备内存使用率</h1>
+<hr>
+<h2 class=title_line> 内存Summary</h2>
+
+
+<div class=mem_summary>
+<div id=mem_total_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">total_mem</h3></div>
+<canvas id="mem_total_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div  class=mem_summary>
+<div id=mem_free_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">total_free</h3></div>
+<canvas id="mem_free_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_summary>
+<div id=mem_use_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">total_use</h3></div>
+<canvas id="mem_use_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_summary>
+<div id=mem_buff_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">total_buff</h3></div>
+<canvas id="mem_buff_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_summary>
+<div id=mremaind_space_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">剩余空间</h3></div>
+<canvas id="remaind_space_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+
+<h2 class=title_line>APP 内存使用率</h2>
+
+
+<div class=mem_detail>
+<div id=door_title style="background-color:#FF8C00;width:300px">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">Door mem 使用率</h3></div>
+<canvas id="door_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =weigh_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">weigh mem 使用率</h3></div>
+<canvas id="weigh_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =weighcv_cm_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">weighcv_cm mem 使用率</h3></div>
+<canvas id="weighcv_cm_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =weighcv_as_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">weighcv_as mem 使用率</h3></div>
+<canvas id="weighcv_as_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =iotkit_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">iotkit mem 使用率</h3></div>
+<canvas id="iotkit_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =apps_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">apps mem 使用率</h3></div>
+<canvas id="apps_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =alarm_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">alarm mem 使用率</h3></div>
+<canvas id="alarm_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =monitor_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">monitor mem 使用率</h3></div>
+<canvas id="monitor_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+<div class=mem_detail>
+<div id =tts_title style="background-color:#FF8C00">
+<h3 style="margin-bottom:0;font-size:20px;text-align:center">tts mem 使用率</h3></div>
+<canvas id="tts_darw" width="300" height="150" style="border:1px solid #d3d3d3;">
+</canvas>
+</div>
+
+
+<script>
+var door_list={{ door_list|safe }};
+var weigh_list={{ weigh_list|safe }};
+var weighcv_cm_list={{ weighcv_cm_list|safe }};
+var weighcv_as_list={{ weighcv_as_list|safe }};
+var iotkit_list={{ iotkit_list|safe }};
+var apps_list={{ apps_list|safe }};
+var alarm_list={{ alarm_list|safe }};
+var monitor_list={{ monitor_list|safe }};
+var tts_list={{ tts_list|safe }};
+var mem_total={{mem_total|safe}};
+var mem_free={{mem_free|safe}};
+var mem_use={{mem_use|safe}};
+var mem_buff={{mem_buff|safe}};
+var remaind_space={{remaind_space|safe}};
+var darw_value_list= [mem_total,mem_free,mem_use,mem_buff,remaind_space,door_list,weigh_list,weighcv_cm_list,weighcv_as_list,iotkit_list,apps_list,alarm_list,monitor_list,tts_list];
+var darw_name_list=["mem_total_darw","mem_free_darw","mem_use_darw","mem_buff_darw","remaind_space_darw","door_darw","weigh_darw","weighcv_cm_darw","weighcv_as_darw","iotkit_darw","apps_darw","alarm_darw","monitor_darw","tts_darw"];
+var sub_darw_value_list= new Array();
+for (var i=0;i<= darw_value_list.length;i++)
+{
+sub_darw_value_list=darw_value_list[i];
+x_len=sub_darw_value_list.length;
+var x_step=300/(x_len-1);
+var c=document.getElementById(darw_name_list[i]);
+var ctx=c.getContext("2d");
+ctx.fillStyle= "#CD5C5C";
+ctx.fillRect(0,0,300,150);
+ctx.translate(0,150)
+if (i<4)
+{
+darw_value=darw_value_list[i][0]*150/1000;
+console.log(darw_value)
+ctx.moveTo(0,-darw_value);
+}
+else
+{
+ctx.moveTo(0,-(darw_value_list[i][0]*1.5));
+}
+mem_darw();
+ctx.stroke();
+function mem_darw()
+{
+for (var j=1; j<= x_len;j++)
+{
+if (i<4)
+{
+darw_value=darw_value_list[i][0]*150/1000;
+ctx.lineTo(x_step*j,-darw_value);
+}
+else
+{
+ctx.lineTo(x_step*j,-darw_value_list[i][j]*1.5);
+}
+
+}
+}
+
+}
+
+
+</script>
+
+
+</body>
+</html>

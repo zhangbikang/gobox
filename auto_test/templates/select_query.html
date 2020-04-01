@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询选择</title>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/select2-develop/dist/js/i18n/zh-CN.js"></script>
+    <link href="/static/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+    <script  type="text/javascript" src="/static/js/echarts.common.min.js"></script>
+</head>
+<body>
+<div class="container">
+        <div class="row">
+        <h2 style="text-align: center;background:#5CACEE">CPU和内存监控</h2>
+    </div>
+       <div class="row" id="select_type">
+           <div class="col-lg-4">
+            <label>起始时间:</label><input class="form-control" type="date" name="query_st" id="query_st" value="2019-05-01" style="width: 300px"/>
+               </div>
+           <div class="col-lg-4">
+            <label>结束时间:</label><input class="form-control" type="date" name="query_et" id="query_et" value="2019-05-01" style="width: 300px"/>
+               </div>
+           <div class="col-lg-4">
+               <label>选择设备ID:</label> <select name="select_dev_id" id="select_dev_id"class="form-control" style="width: 300px">
+                <option value="2001">2001</option>
+                <option value="2003">2003</option>
+                <option value="1049">1049</option>
+                <option value="2012">2012</option>
+                <option value="2030">2030</option>
+               <option value="3069">3069</option>
+            </select>
+               </div>
+       </div>
+           <div class="row">
+               <div class="col-lg-4">
+                   <input type="submit" name="确定" id="query_cpu_mem_date"/>
+                   </div>
+       </div>
+    <div class="row" id="counter_cpu_darw" style="width: 1000px;height: 400px ">
+    </div>
+        <div class="row" id="counter_mem_darw" style="width: 1000px;height: 400px ">
+    </div>
+    <div class="row" id="counter_memsummary_darw" style="width: 1000px;height: 400px">
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $("#query_cpu_mem_date").click (function () {
+            var obj_st = document.getElementById("query_st");
+            var start_time = obj_st.value;
+            var obj_et = document.getElementById("query_et");
+            var end_time = obj_et.value;
+            var dev_id=$("#select_dev_id").val()
+            $.ajax({
+                url:"/get_cpu_date",
+                type:'POST',
+                async: false,
+                data: JSON.stringify({
+                    dev_id: dev_id,
+                    start_time: start_time,
+                    end_time: end_time,
+                    }),
+                    contentType: "application/json",
+                success: function (respons_date) {
+                    respons_date = JSON.parse(respons_date);
+                    var date_dict = respons_date["output"];
+                    create_cpu_darw(date_dict);
+                    create_mem_darw(date_dict);
+                    create_summary_darw(date_dict);
+                }
+
+                })
+        })
+    })
+
+    function create_cpu_darw(date_dict){
+	var door_list=date_dict["cpu_date"]["door_list"];
+	var weigh_list=date_dict["cpu_date"]["weigh_list"];
+	var weighcv_cm_list=date_dict["cpu_date"]["weighcv_cm_list"];
+	var weighcv_as_list=date_dict["cpu_date"]["weighcv_as_list"];
+	var iotkit_list=date_dict["cpu_date"]["iotkit_list"];
+	var apps_list=date_dict["cpu_date"]["apps_list"];
+	var alarm_list=date_dict["cpu_date"]["alarm_list"];
+	var monitor_list=date_dict["cpu_date"]["monitor_list"];
+	var tts_list=date_dict["cpu_date"]["tts_list"];
+		var dev_id=date_dict["dev_id"];
+	var x_date=new Array();
+	for(var i=0;i<door_list.length;i++) {
+		x_date[i] = i;
+		};
+	var myChart_cpu = echarts.init(document.getElementById('counter_cpu_darw'));
+	var option = {
+    tooltip: {
+        show: true,
+        trigger: 'axis',
+    },
+	    title: {
+            text: dev_id+'CPU使用率',
+            textStyle: {
+                color: '#32cd32',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontFamily: 'sans-serif',
+                fontSize: 18
+            }
+        },
+		legend: {
+			data:['door','weigh','weighcv_cm','weighcv_as','iotkit','apps','alarm','monitor','tts']
+			},
+		toolbox: {
+			show : true,
+			feature : {
+				mark : {show: true},
+				dataView : {show: true, readOnly: false},
+				magicType : {show: true, type: ['line', 'stack', 'tiled']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+				}
+			},
+		calculable : true,
+		xAxis : [
+		{
+			type : 'category',
+			boundaryGap : false,
+			data : x_date
+		}
+		],
+		yAxis : [
+			{
+				type : 'value'
+				}
+			],
+		series : [
+		{
+			name:'door',
+			type:'line',
+			stack: '总量',
+			data:door_list
+        },
+        {
+            name:'weigh',
+            type:'line',
+            stack: '总量',
+            data:weigh_list
+        },
+        {
+            name:'weighcv_cm',
+            type:'line',
+            stack: '总量',
+            data: weighcv_cm_list
+        },
+        {
+            name:'weighcv_as',
+            type:'line',
+            stack: '总量',
+            data:weighcv_as_list
+        },
+        {
+            name:'iotkit',
+            type:'line',
+            stack: '总量',
+            data:iotkit_list
+        },
+        {
+            name:'apps',
+            type:'line',
+            stack: '总量',
+            data:apps_list
+        },
+        {
+            name:'alarm',
+            type:'line',
+            stack: '总量',
+            data:alarm_list
+        },
+        {
+            name:'monitor',
+            type:'line',
+            stack: '总量',
+            data:monitor_list
+        },
+        {
+            name:'tts',
+            type:'line',
+            stack: '总量',
+            data:tts_list
+        }
+    ]
+};
+myChart_cpu.setOption(option);
+
+    }
+    function create_mem_darw(date_dict){
+	var door_list=date_dict["mem_date"]["door_list"];
+	var weigh_list=date_dict["mem_date"]["weigh_list"];
+	var weighcv_cm_list=date_dict["mem_date"]["weighcv_cm_list"];
+	var weighcv_as_list=date_dict["mem_date"]["weighcv_as_list"];
+	var iotkit_list=date_dict["mem_date"]["iotkit_list"];
+	var apps_list=date_dict["mem_date"]["apps_list"];
+	var alarm_list=date_dict["mem_date"]["alarm_list"];
+	var monitor_list=date_dict["mem_date"]["monitor_list"];
+	var tts_list=date_dict["mem_date"]["tts_list"];
+		var dev_id=date_dict["dev_id"];
+	var x_date=new Array();
+	for(var i=0;i<door_list.length;i++) {
+		x_date[i] = i;
+		};
+	var myChart_mem = echarts.init(document.getElementById('counter_mem_darw'));
+	var option = {
+
+    tooltip: {
+        show: true,
+        trigger: 'axis',
+    },
+
+	    title: {
+            text: dev_id+'内存使用率',
+            textStyle: {
+                color: '#32cd32',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontFamily: 'sans-serif',
+                fontSize: 18
+            }
+        },
+		legend: {
+			data:['door','weigh','weighcv_cm','weighcv_as','iotkit','apps','alarm','monitor','tts']
+			},
+		toolbox: {
+			show : true,
+			feature : {
+				mark : {show: true},
+				dataView : {show: true, readOnly: false},
+				magicType : {show: true, type: ['line', 'stack', 'tiled']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+				}
+			},
+		calculable : true,
+		xAxis : [
+		{
+			type : 'category',
+			boundaryGap : false,
+			data : x_date
+		}
+		],
+		yAxis : [
+			{
+				type : 'value'
+				}
+			],
+		series : [
+		{
+			name:'door',
+			type:'line',
+			stack: '总量',
+			data:door_list
+        },
+        {
+            name:'weigh',
+            type:'line',
+            stack: '总量',
+            data:weigh_list
+        },
+        {
+            name:'weighcv_cm',
+            type:'line',
+            stack: '总量',
+            data: weighcv_cm_list
+        },
+        {
+            name:'weighcv_as',
+            type:'line',
+            stack: '总量',
+            data:weighcv_as_list
+        },
+        {
+            name:'iotkit',
+            type:'line',
+            stack: '总量',
+            data:iotkit_list
+        },
+        {
+            name:'apps',
+            type:'line',
+            stack: '总量',
+            data:apps_list
+        },
+        {
+            name:'alarm',
+            type:'line',
+            stack: '总量',
+            data:alarm_list
+        },
+        {
+            name:'monitor',
+            type:'line',
+            stack: '总量',
+            data:monitor_list
+        },
+        {
+            name:'tts',
+            type:'line',
+            stack: '总量',
+            data:tts_list
+        }
+    ]
+};
+myChart_mem.setOption(option);
+    }
+function create_summary_darw(date_dict){
+	var mem_total_list=date_dict["mem_summary_date"]["mem_total"];
+	var mem_free_list=date_dict["mem_summary_date"]["mem_free"];
+	var mem_use_list=date_dict["mem_summary_date"]["mem_use"];
+	var mem_buff_list=date_dict["mem_summary_date"]["mem_buff"];
+	var remaind_space_list=date_dict["mem_summary_date"]["remaind_space"];
+	var dev_id=date_dict["dev_id"]
+    var x_summary_date=new Array();
+	for(var j=0;j<mem_total_list.length;j++) {
+            x_summary_date[j] = j;
+        };
+	var myChart_summary = echarts.init(document.getElementById('counter_memsummary_darw'));
+    var option = {
+    tooltip: {
+        show: true,
+        trigger: 'axis',
+    },
+	    title: {
+            text: dev_id+'总内存和存储空间',
+            textStyle: {
+                color: '#32cd32',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontFamily: 'sans-serif',
+                fontSize: 18
+            }
+        },
+    legend: {
+        data:['mem_total','mem_free','mem_use','mem_buff','remaind_space']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : x_summary_date
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'mem_total',
+            type:'line',
+            stack: '总量',
+            data:mem_total_list
+        },
+        {
+            name:'mem_free',
+            type:'line',
+            stack: '总量',
+            data:mem_free_list
+        },
+        {
+            name:'mem_use',
+            type:'line',
+            stack: '总量',
+            data: mem_use_list
+        },
+        {
+            name:'mem_buff',
+            type:'line',
+            stack: '总量',
+            data:mem_buff_list
+        },
+        {
+            name:'remaind_space',
+            type:'line',
+            stack: '总量',
+            data:remaind_space_list
+        }
+    ]
+};
+myChart_summary.setOption(option);
+}
+                       $(document).ready(function () {
+                                    var time=new Date(Date());
+            time.setDate(time.getDate()+1);
+            var day=("0"+time.getDate()).slice(-2);
+            var month=("0"+(time.getMonth()+1)).slice(-2);
+            var year=time.getFullYear()
+            var today=(year)+"-"+(month)+"-"+(day);
+            $("#query_et").val(today)
+               var start_time=new Date(today);
+            start_time.setDate(start_time.getDate()-7);
+            var start_month=("0"+(start_time.getMonth()+1)).slice(-2);
+            var start_day=("0"+start_time.getDate()).slice(-2);
+            var start_year=start_time.getFullYear();
+            var start_today=(start_year)+"-"+(start_month)+"-"+(start_day);
+            $("#query_st").val(start_today);
+             })
+
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,922 @@
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+TestModel.case_log.job_log_time: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+TestModel.cpu_used.get_time: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+TestModel.mem_summary.get_time: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+TestModel.mem_used.get_time: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+TestModel.suite_status.job_run_time: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+
+System check identified 5 issues (0 silenced).
+[25/May/2019 01:26:50] "GET / HTTP/1.1" 200 2758
+[25/May/2019 01:26:50] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:26:51] "GET / HTTP/1.1" 200 2758
+[25/May/2019 01:26:51] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:26:53] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:26:54] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 01:26:54] "GET /static/bootstrap-paginator-master/src/bootstrap-paginator.js HTTP/1.1" 304 0
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2019-05-01 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2019-05-26 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 01:27:02] "POST /ajax_case_log HTTP/1.1" 200 726
+[25/May/2019 01:27:11] "GET /get_db/ HTTP/1.1" 200 11067
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField cpu_used.get_time received a naive datetime (2019-05-01 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField cpu_used.get_time received a naive datetime (2019-05-26 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_used.get_time received a naive datetime (2019-05-01 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_used.get_time received a naive datetime (2019-05-26 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_summary.get_time received a naive datetime (2019-05-01 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_summary.get_time received a naive datetime (2019-05-26 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 01:27:18] "POST /get_cpu_date HTTP/1.1" 200 1259
+[25/May/2019 01:27:54] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 01:30:51] "GET / HTTP/1.1" 200 2758
+[25/May/2019 01:30:51] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:30:56] "GET /admin HTTP/1.1" 200 5562
+[25/May/2019 01:30:56] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /admin HTTP/1.1" 200 5562
+[25/May/2019 01:30:56] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[25/May/2019 01:30:56] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:30:59] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 01:30:59] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 01:30:59] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[25/May/2019 01:30:59] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 01:35:07] "GET /favicon.ico HTTP/1.1" 200 2758
+/django/venv/lib/python3.5/site-packages/django/template/defaulttags.py:63: UserWarning: A {% csrf_token %} was used in a template, but the context did not provide the value.  This is usually caused by not using RequestContext.
+  "A {% csrf_token %} was used in a template, but the context "
+[25/May/2019 01:35:07] "GET /select_test HTTP/1.1" 200 6202
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField suite_status.job_run_time received a naive datetime (2019-05-01 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField suite_status.job_run_time received a naive datetime (2019-05-26 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 01:35:17] "POST /query_job_status HTTP/1.1" 200 6795
+[25/May/2019 01:35:21] "POST /query_job_status HTTP/1.1" 200 6386
+[25/May/2019 01:35:27] "POST /query_job_status HTTP/1.1" 200 6409
+[25/May/2019 02:11:33] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 02:11:33] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 02:11:34] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 02:11:47] "GET /query_case_log HTTP/1.1" 200 6327
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2019-05-25 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 02:11:52] "POST /ajax_case_log HTTP/1.1" 200 16204
+[25/May/2019 02:11:53] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[25/May/2019 02:11:55] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[25/May/2019 02:12:11] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[25/May/2019 05:45:21] "GET / HTTP/1.1" 200 2758
+[25/May/2019 05:45:21] "GET /static/select2-develop/dist/css/select2.min.css HTTP/1.1" 200 15180
+[25/May/2019 05:45:21] "GET /static/bootstrap/js/bootstrap.js HTTP/1.1" 200 69707
+[25/May/2019 05:45:21] "GET /static/select2-develop/dist/js/select2.min.js HTTP/1.1" 200 68627
+[25/May/2019 05:45:21] "GET /static/select2-develop/dist/js/i18n/zh-CN.js HTTP/1.1" 200 823
+[25/May/2019 05:45:21] "GET /static/bootstrap/css/bootstrap.css HTTP/1.1" 200 146010
+[25/May/2019 05:45:22] "GET /static/js/jquery-3.3.1.js HTTP/1.1" 200 271751
+[25/May/2019 05:45:22] "GET /static/js/echarts.js HTTP/1.1" 200 2768731
+[25/May/2019 05:45:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:45:25] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:45:27] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:45:27] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 05:45:27] "GET /static/bootstrap-paginator-master/src/bootstrap-paginator.js HTTP/1.1" 200 20974
+[25/May/2019 05:47:40] "POST /ajax_case_log HTTP/1.1" 200 16204
+[25/May/2019 05:47:46] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[25/May/2019 05:48:14] "GET /admin HTTP/1.1" 302 0
+[25/May/2019 05:48:14] "GET /adminlogin/?next=/admin HTTP/1.1" 200 1815
+[25/May/2019 05:48:14] "GET /static/admin/css/base.css HTTP/1.1" 200 16378
+[25/May/2019 05:48:14] "GET /static/admin/css/responsive.css HTTP/1.1" 200 17944
+[25/May/2019 05:48:14] "GET /static/admin/css/login.css HTTP/1.1" 200 1233
+[25/May/2019 05:48:14] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[25/May/2019 05:48:14] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[25/May/2019 05:48:14] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[25/May/2019 05:48:14] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:48:21] "POST /adminlogin/?next=/admin HTTP/1.1" 200 1976
+[25/May/2019 05:48:21] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[25/May/2019 05:48:21] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:48:28] "POST /adminlogin/?next=/admin HTTP/1.1" 302 0
+[25/May/2019 05:48:28] "GET /admin HTTP/1.1" 200 5562
+[25/May/2019 05:48:28] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 412
+[25/May/2019 05:48:28] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[25/May/2019 05:48:28] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[25/May/2019 05:48:28] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:48:33] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 05:48:33] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 363
+[25/May/2019 05:48:33] "GET /static/admin/js/core.js HTTP/1.1" 200 7135
+[25/May/2019 05:48:33] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6170
+[25/May/2019 05:48:33] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6918
+[25/May/2019 05:48:33] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 05:48:33] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1530
+[25/May/2019 05:48:33] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8972
+[25/May/2019 05:48:33] "GET /static/admin/js/actions.js HTTP/1.1" 200 6538
+[25/May/2019 05:48:33] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 271751
+[25/May/2019 05:48:33] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 128820
+[25/May/2019 05:48:33] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[25/May/2019 05:48:33] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[25/May/2019 05:48:33] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 05:49:44] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 05:49:44] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 05:49:44] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:11:03] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:49:10] "GET / HTTP/1.1" 200 2758
+[25/May/2019 06:49:10] "GET /static/bootstrap/js/bootstrap.js HTTP/1.1" 200 69707
+[25/May/2019 06:49:10] "GET /static/select2-develop/dist/css/select2.min.css HTTP/1.1" 200 15180
+[25/May/2019 06:49:10] "GET /static/select2-develop/dist/js/select2.min.js HTTP/1.1" 200 68627
+[25/May/2019 06:49:10] "GET /static/select2-develop/dist/js/i18n/zh-CN.js HTTP/1.1" 200 823
+[25/May/2019 06:49:10] "GET /static/js/jquery-3.3.1.js HTTP/1.1" 200 271751
+[25/May/2019 06:49:10] "GET /static/bootstrap/css/bootstrap.css HTTP/1.1" 200 146010
+[25/May/2019 06:49:11] "GET /static/js/echarts.js HTTP/1.1" 200 2768731
+[25/May/2019 06:49:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:49:13] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:49:14] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:49:15] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 06:49:15] "GET /static/bootstrap-paginator-master/src/bootstrap-paginator.js HTTP/1.1" 200 20974
+[25/May/2019 06:50:26] "GET / HTTP/1.1" 200 2758
+[25/May/2019 06:50:26] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:50:29] "GET /admin HTTP/1.1" 302 0
+[25/May/2019 06:50:29] "GET /adminlogin/?next=/admin HTTP/1.1" 200 1815
+[25/May/2019 06:50:29] "GET /static/admin/css/base.css HTTP/1.1" 200 16378
+[25/May/2019 06:50:29] "GET /static/admin/css/responsive.css HTTP/1.1" 200 17944
+[25/May/2019 06:50:29] "GET /static/admin/css/login.css HTTP/1.1" 200 1233
+[25/May/2019 06:50:29] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[25/May/2019 06:50:30] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[25/May/2019 06:50:30] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[25/May/2019 06:50:30] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:50:39] "POST /adminlogin/?next=/admin HTTP/1.1" 302 0
+[25/May/2019 06:50:39] "GET /admin HTTP/1.1" 200 5562
+[25/May/2019 06:50:39] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 412
+[25/May/2019 06:50:39] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[25/May/2019 06:50:39] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[25/May/2019 06:50:39] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[25/May/2019 06:50:39] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 06:50:44] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 06:50:44] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 363
+[25/May/2019 06:50:44] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6918
+[25/May/2019 06:50:44] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 271751
+[25/May/2019 06:50:44] "GET /static/admin/js/core.js HTTP/1.1" 200 7135
+[25/May/2019 06:50:44] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6170
+[25/May/2019 06:50:44] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 06:50:44] "GET /static/admin/js/actions.js HTTP/1.1" 200 6538
+[25/May/2019 06:50:44] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1530
+[25/May/2019 06:50:44] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8972
+[25/May/2019 06:50:45] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[25/May/2019 06:50:45] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 128820
+[25/May/2019 06:50:45] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[25/May/2019 06:50:45] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 07:08:35] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 07:08:35] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 07:08:35] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 07:08:35] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:01:10] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:01:10] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:01:10] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:01:12] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:01:12] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:01:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:01:13] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:01:13] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:01:13] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:01:15] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 08:01:15] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:01:17] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 08:01:17] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:01:17] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:24:35] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:24:35] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:24:35] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:24:37] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 08:24:37] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:24:39] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 08:24:39] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:24:39] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:24:41] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:24:41] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:24:41] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:25:55] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:25:55] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:25:56] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:25:57] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 08:25:57] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:25:58] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 08:25:58] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:25:59] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:27:54] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:27:54] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:27:54] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:04] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:29:04] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:29:04] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:06] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 08:29:07] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:08] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 08:29:08] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:29:08] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:11] "GET /adminTestModel/case_log/?o=6 HTTP/1.1" 200 57092
+[25/May/2019 08:29:11] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:29:11] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[25/May/2019 08:29:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:12] "GET /adminTestModel/case_log/?o=-6 HTTP/1.1" 200 57524
+[25/May/2019 08:29:12] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:29:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:29:17] "GET /adminTestModel/case_log/?q=wifi&o=-6 HTTP/1.1" 200 4215
+[25/May/2019 08:29:17] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:29:17] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:30:38] "POST /ajax_case_log HTTP/1.1" 200 14
+[25/May/2019 08:30:43] "GET / HTTP/1.1" 200 2758
+[25/May/2019 08:30:43] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:30:45] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:30:46] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 08:34:57] "GET /adminTestModel/case_log/?q=wifi&o=-6 HTTP/1.1" 200 4215
+[25/May/2019 08:34:57] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:34:57] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:34:58] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 08:34:59] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:35:00] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 08:35:00] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:35:00] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:35:02] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:35:02] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:35:02] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:35:33] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57070
+[25/May/2019 08:35:33] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:35:33] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:35:53] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 08:35:59] "GET /adminTestModel/case_log/?o=6&q= HTTP/1.1" 200 57875
+[25/May/2019 08:36:00] "GET /adminTestModel/case_log/?o=6&q= HTTP/1.1" 200 57875
+[25/May/2019 08:36:00] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:36:00] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:36:02] "GET /adminTestModel/case_log/?o=-6&q= HTTP/1.1" 200 58307
+[25/May/2019 08:36:02] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:36:02] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:36:10] "GET /adminTestModel/case_log/?q=&o=-6 HTTP/1.1" 200 58307
+[25/May/2019 08:36:10] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 08:36:10] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:50:40] "GET / HTTP/1.1" 200 2758
+[25/May/2019 08:50:41] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:50:44] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:50:45] "GET /query_case_log HTTP/1.1" 200 6327
+[25/May/2019 08:50:45] "GET /static/bootstrap-paginator-master/src/bootstrap-paginator.js HTTP/1.1" 304 0
+[25/May/2019 08:51:04] "POST /ajax_case_log HTTP/1.1" 200 16204
+[25/May/2019 08:51:09] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[25/May/2019 08:55:36] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 08:55:38] "GET /select_test HTTP/1.1" 200 6202
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField suite_status.job_run_time received a naive datetime (2019-05-31 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 08:55:47] "POST /query_job_status HTTP/1.1" 200 6409
+[25/May/2019 09:01:58] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:01:59] "GET /select_test HTTP/1.1" 200 6202
+[25/May/2019 09:02:12] "POST /query_job_status HTTP/1.1" 200 6409
+[25/May/2019 09:04:00] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:04:02] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:04:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:04:12] "GET /query_case_log HTTP/1.1" 200 6327
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2019-05-31 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[25/May/2019 09:04:18] "POST /ajax_case_log HTTP/1.1" 200 16204
+[25/May/2019 09:04:26] "GET /adminTestModel/suite_status/ HTTP/1.1" 200 12679
+[25/May/2019 09:04:26] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:04:27] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:04:45] "GET /adminTestModel/suite_status/22/change/ HTTP/1.1" 200 5710
+[25/May/2019 09:04:45] "GET /static/admin/js/calendar.js HTTP/1.1" 200 7777
+[25/May/2019 09:04:45] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 20274
+[25/May/2019 09:04:45] "GET /static/admin/css/forms.css HTTP/1.1" 200 8518
+[25/May/2019 09:04:45] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 495
+[25/May/2019 09:04:45] "GET /static/admin/js/change_form.js HTTP/1.1" 200 712
+[25/May/2019 09:04:45] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:04:45] "GET /static/admin/css/widgets.css HTTP/1.1" 200 10340
+[25/May/2019 09:04:46] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+[25/May/2019 09:04:46] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+[25/May/2019 09:04:46] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:04:47] "GET /adminTestModel/suite_status/ HTTP/1.1" 200 12679
+[25/May/2019 09:04:47] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:09:40] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:09:41] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[25/May/2019 09:09:41] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[25/May/2019 09:09:41] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[25/May/2019 09:09:41] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:09:43] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54483
+[25/May/2019 09:09:43] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:09:43] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:13:37] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:13:37] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:13:37] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:13:43] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:13:43] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:13:43] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:17] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:17] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:17] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:18] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:18] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:18] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:19] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:19] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:20] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:20] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:20] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:21] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:21] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:21] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:22] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:22] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:23] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:23] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:23] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:23] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:23] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:23] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:14:24] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:14:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:14:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:21:27] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 13664
+[25/May/2019 09:21:27] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:21:28] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:21:29] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:21:29] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:21:30] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54469
+[25/May/2019 09:21:30] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:21:31] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:23:52] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54469
+[25/May/2019 09:23:52] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:23:52] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:30:54] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57056
+[25/May/2019 09:30:54] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:30:54] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[25/May/2019 09:30:54] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[25/May/2019 09:30:55] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 09:30:55] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[25/May/2019 09:30:55] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 09:30:55] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[25/May/2019 09:30:55] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:30:57] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57056
+[25/May/2019 09:30:57] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:30:57] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:30:59] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:30:59] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[25/May/2019 09:30:59] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[25/May/2019 09:30:59] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[25/May/2019 09:31:00] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:31:02] "GET /adminTestModel/suite_status/ HTTP/1.1" 200 13395
+[25/May/2019 09:31:02] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:31:02] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:31:08] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:31:08] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:31:10] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54469
+[25/May/2019 09:31:10] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:31:10] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:34:11] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:34:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:34:12] "GET /adminTestModel/suite_status/ HTTP/1.1" 200 13753
+[25/May/2019 09:34:12] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:34:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:39:19] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 15190
+[25/May/2019 09:39:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:39:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:39:24] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:39:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:39:25] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54454
+[25/May/2019 09:39:25] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:39:26] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:46:19] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57032
+[25/May/2019 09:46:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:46:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:46:22] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:46:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:46:23] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54445
+[25/May/2019 09:46:23] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:46:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:46:25] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:46:25] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:46:27] "GET /adminTestModel/suite_status/ HTTP/1.1" 200 14821
+[25/May/2019 09:46:27] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:46:27] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:54:24] "GET /adminTestModel/suite_status/?q= HTTP/1.1" 200 15956
+[25/May/2019 09:54:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:54:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:54:28] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[25/May/2019 09:54:28] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 09:54:29] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54434
+[25/May/2019 09:54:29] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 09:54:29] "GET /favicon.ico HTTP/1.1" 200 2758
+[25/May/2019 10:01:03] "GET /adminTestModel/case_log/?q= HTTP/1.1" 200 57005
+[25/May/2019 10:01:03] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[25/May/2019 10:01:03] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 02:09:01] "GET / HTTP/1.1" 200 2758
+[27/May/2019 02:09:01] "GET /static/select2-develop/dist/js/i18n/zh-CN.js HTTP/1.1" 304 0
+[27/May/2019 02:09:01] "GET /static/select2-develop/dist/js/select2.min.js HTTP/1.1" 304 0
+[27/May/2019 02:09:01] "GET /static/select2-develop/dist/css/select2.min.css HTTP/1.1" 304 0
+[27/May/2019 02:09:03] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 02:09:07] "GET /admin HTTP/1.1" 200 5562
+[27/May/2019 02:09:07] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /admin HTTP/1.1" 200 5562
+[27/May/2019 02:09:07] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[27/May/2019 02:09:07] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 02:09:09] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54418
+[27/May/2019 02:09:09] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 02:09:09] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[27/May/2019 02:09:09] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 03:04:41] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54418
+[27/May/2019 03:04:41] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 03:04:41] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 03:19:47] "GET / HTTP/1.1" 200 2758
+[27/May/2019 03:19:48] "GET /static/select2-develop/dist/js/select2.min.js HTTP/1.1" 304 0
+[27/May/2019 03:19:48] "GET /static/select2-develop/dist/js/i18n/zh-CN.js HTTP/1.1" 304 0
+[27/May/2019 03:19:48] "GET /static/select2-develop/dist/css/select2.min.css HTTP/1.1" 304 0
+[27/May/2019 03:19:48] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 03:19:58] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 03:19:59] "GET /select_test HTTP/1.1" 200 6202
+[27/May/2019 03:20:06] "POST /query_job_status HTTP/1.1" 200 6551
+[27/May/2019 03:20:09] "POST /query_job_status HTTP/1.1" 200 6385
+[27/May/2019 03:20:16] "POST /query_job_status HTTP/1.1" 200 6551
+[27/May/2019 03:20:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 03:20:26] "GET /query_case_log HTTP/1.1" 200 6327
+[27/May/2019 03:20:26] "GET /static/bootstrap-paginator-master/src/bootstrap-paginator.js HTTP/1.1" 304 0
+[27/May/2019 03:20:28] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:20:38] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:20:39] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:20:45] "POST /ajax_case_log HTTP/1.1" 200 14
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2020-05-27 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[27/May/2019 03:20:57] "POST /ajax_case_log HTTP/1.1" 200 16204
+[27/May/2019 03:21:02] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[27/May/2019 03:21:04] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[27/May/2019 03:21:12] "POST /ajax_query_log_detail HTTP/1.1" 200 16
+[27/May/2019 03:21:27] "POST /ajax_case_log HTTP/1.1" 200 726
+[27/May/2019 03:21:33] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:21:37] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:21:38] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:21:41] "POST /ajax_case_log HTTP/1.1" 200 14
+[27/May/2019 03:21:50] "GET /query_case_log HTTP/1.1" 200 6327
+[27/May/2019 03:22:26] "GET /get_db/ HTTP/1.1" 200 11067
+[27/May/2019 03:22:26] "GET /static/js/echarts.common.min.js HTTP/1.1" 200 452979
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField cpu_used.get_time received a naive datetime (2020-05-25 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_used.get_time received a naive datetime (2020-05-25 00:00:00) while time zone support is active.
+  RuntimeWarning)
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField mem_summary.get_time received a naive datetime (2020-05-25 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[27/May/2019 03:22:35] "POST /get_cpu_date HTTP/1.1" 200 1259
+[27/May/2019 03:22:46] "POST /get_cpu_date HTTP/1.1" 200 1252
+[27/May/2019 03:23:10] "GET /query_case_log HTTP/1.1" 200 6327
+[27/May/2019 03:23:11] "GET /select_test HTTP/1.1" 200 6202
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/socketserver.py", line 625, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.5/socketserver.py", line 354, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.5/socketserver.py", line 681, in __init__
+    self.handle()
+  File "/django/venv/lib/python3.5/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/django/venv/lib/python3.5/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.5/socket.py", line 575, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+[27/May/2019 05:28:24] "GET /adminTestModel/ HTTP/1.1" 200 4301
+[27/May/2019 05:28:25] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 05:28:26] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54484
+[27/May/2019 05:28:26] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 05:28:26] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 05:29:02] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54484
+[27/May/2019 05:29:02] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 05:29:02] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 06:19:06] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54314
+[27/May/2019 06:19:06] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 06:19:06] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 06:32:49] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54283
+[27/May/2019 06:32:49] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 06:32:50] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 06:40:45] "GET /adminTestModel/case_log/ HTTP/1.1" 200 53994
+[27/May/2019 06:40:45] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 06:40:45] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 06:40:46] "GET /adminTestModel/case_log/ HTTP/1.1" 200 53994
+[27/May/2019 06:40:46] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 06:40:46] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:08:31] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54254
+[27/May/2019 07:08:31] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 07:08:31] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:19:24] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54254
+[27/May/2019 07:19:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 07:19:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:24:45] "GET / HTTP/1.1" 200 2758
+[27/May/2019 07:24:46] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:24:48] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:24:49] "GET /query_case_log HTTP/1.1" 200 6327
+[27/May/2019 07:24:59] "POST /ajax_case_log HTTP/1.1" 200 14
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2019-05-28 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[27/May/2019 07:25:03] "POST /ajax_case_log HTTP/1.1" 200 47964
+[27/May/2019 07:25:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 07:25:23] "GET /select_test HTTP/1.1" 200 6202
+[27/May/2019 07:25:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 08:11:22] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54166
+[27/May/2019 08:11:22] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 08:11:23] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 08:11:25] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54166
+[27/May/2019 08:11:25] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 08:11:25] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 08:11:27] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54166
+[27/May/2019 08:11:27] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 08:11:27] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 08:11:28] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54166
+[27/May/2019 08:11:28] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 08:11:28] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 08:16:02] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54199
+[27/May/2019 08:16:03] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 08:16:03] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 09:00:45] "GET /query_case_log HTTP/1.1" 200 6327
+[27/May/2019 09:00:52] "POST /ajax_case_log HTTP/1.1" 200 14
+/django/venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1421: RuntimeWarning: DateTimeField case_log.job_log_time received a naive datetime (2020-05-20 00:00:00) while time zone support is active.
+  RuntimeWarning)
+[27/May/2019 09:00:56] "POST /ajax_case_log HTTP/1.1" 200 54998
+[27/May/2019 09:27:19] "POST /ajax_query_log_detail HTTP/1.1" 200 20
+[27/May/2019 09:27:23] "POST /ajax_query_log_detail HTTP/1.1" 200 20
+[27/May/2019 09:27:33] "POST /ajax_query_log_detail HTTP/1.1" 200 44
+[27/May/2019 09:27:58] "POST /ajax_query_log_detail HTTP/1.1" 200 44
+[27/May/2019 10:21:53] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54181
+[27/May/2019 10:21:53] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:21:53] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[27/May/2019 10:21:53] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:36:58] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54186
+[27/May/2019 10:36:58] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:36:58] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:37:00] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54186
+[27/May/2019 10:37:00] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:37:00] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:39:40] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54323
+[27/May/2019 10:39:40] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:39:40] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:39:47] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54323
+[27/May/2019 10:39:47] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:39:47] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:39:50] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54323
+[27/May/2019 10:39:50] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:39:50] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:06] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:06] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:07] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:09] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:09] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:09] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:10] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:10] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:10] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:11] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:11] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:11] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:11] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:42:12] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54465
+[27/May/2019 10:42:12] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:42:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:44:35] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54497
+[27/May/2019 10:44:36] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:44:36] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:45:47] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54509
+[27/May/2019 10:45:47] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:45:47] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 10:57:57] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54892
+[27/May/2019 10:57:57] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 10:57:57] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:02:22] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54831
+[27/May/2019 11:02:22] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:02:23] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:18:24] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54269
+[27/May/2019 11:18:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:18:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:18:26] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54269
+[27/May/2019 11:18:26] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:18:26] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:27:19] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54354
+[27/May/2019 11:27:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:27:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:32:01] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54459
+[27/May/2019 11:32:01] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:32:01] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:34:45] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54684
+[27/May/2019 11:34:45] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:34:45] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:34:46] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54684
+[27/May/2019 11:34:46] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:34:46] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:34:47] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54684
+[27/May/2019 11:34:47] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:34:47] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:40:14] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:40:14] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:40:14] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:19] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:20] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:20] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:20] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:21] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:21] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:22] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:22] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:22] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:24] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:24] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54755
+[27/May/2019 11:58:24] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:24] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 11:58:30] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56970
+[27/May/2019 11:58:30] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 11:58:30] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:02:49] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56970
+[27/May/2019 12:02:49] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:02:49] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:32:45] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56970
+[27/May/2019 12:32:45] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:32:45] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:47:08] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56970
+[27/May/2019 12:47:08] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:47:09] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:12] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:12] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:14] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:14] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:15] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:18] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:18] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:18] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:19] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:19] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:19] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:20] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:20] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:20] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 12:51:21] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 56920
+[27/May/2019 12:51:21] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 12:51:21] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 14:45:09] "GET / HTTP/1.1" 200 2758
+[27/May/2019 14:45:10] "GET /static/bootstrap/js/bootstrap.js HTTP/1.1" 200 69707
+[27/May/2019 14:45:10] "GET /static/select2-develop/dist/css/select2.min.css HTTP/1.1" 200 15180
+[27/May/2019 14:45:10] "GET /static/select2-develop/dist/js/select2.min.js HTTP/1.1" 200 68627
+[27/May/2019 14:45:10] "GET /static/select2-develop/dist/js/i18n/zh-CN.js HTTP/1.1" 200 823
+[27/May/2019 14:45:10] "GET /static/bootstrap/css/bootstrap.css HTTP/1.1" 200 146010
+[27/May/2019 14:45:10] "GET /static/js/jquery-3.3.1.js HTTP/1.1" 200 271751
+[27/May/2019 14:45:11] "GET /static/js/echarts.js HTTP/1.1" 200 2768731
+[27/May/2019 14:45:11] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 14:45:15] "GET /admin HTTP/1.1" 302 0
+[27/May/2019 14:45:16] "GET /adminlogin/?next=/admin HTTP/1.1" 200 1815
+[27/May/2019 14:45:16] "GET /static/admin/css/responsive.css HTTP/1.1" 200 17944
+[27/May/2019 14:45:16] "GET /static/admin/css/login.css HTTP/1.1" 200 1233
+[27/May/2019 14:45:16] "GET /static/admin/css/base.css HTTP/1.1" 200 16378
+[27/May/2019 14:45:16] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[27/May/2019 14:45:16] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[27/May/2019 14:45:16] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[27/May/2019 14:45:16] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 14:45:28] "POST /adminlogin/?next=/admin HTTP/1.1" 302 0
+[27/May/2019 14:45:29] "GET /admin HTTP/1.1" 200 5562
+[27/May/2019 14:45:29] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 412
+[27/May/2019 14:45:29] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[27/May/2019 14:45:29] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[27/May/2019 14:45:29] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[27/May/2019 14:45:29] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 14:45:33] "GET /adminTestModel/case_log/ HTTP/1.1" 200 54767
+[27/May/2019 14:45:33] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6918
+[27/May/2019 14:45:33] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 363
+[27/May/2019 14:45:33] "GET /static/admin/js/core.js HTTP/1.1" 200 7135
+[27/May/2019 14:45:33] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 271751
+[27/May/2019 14:45:33] "GET /static/admin/js/actions.js HTTP/1.1" 200 6538
+[27/May/2019 14:45:33] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6170
+[27/May/2019 14:45:33] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8972
+[27/May/2019 14:45:33] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 14:45:33] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1530
+[27/May/2019 14:45:33] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[27/May/2019 14:45:33] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 128820
+[27/May/2019 14:45:33] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[27/May/2019 14:45:33] "GET /favicon.ico HTTP/1.1" 200 2758
+[27/May/2019 14:53:03] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 57006
+[27/May/2019 14:53:03] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[27/May/2019 14:53:03] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:10:44] "GET /adminTestModel/case_log/?p=2 HTTP/1.1" 200 56973
+[28/May/2019 01:10:44] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[28/May/2019 01:10:44] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[28/May/2019 01:10:44] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[28/May/2019 01:10:44] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[28/May/2019 01:10:44] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:10:44] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[28/May/2019 01:10:45] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[28/May/2019 01:10:46] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:10:57] "GET /adminTestModel/case_log/?p=3 HTTP/1.1" 200 57149
+[28/May/2019 01:10:57] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:10:57] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:11:11] "GET /adminTestModel/case_log/?p=4 HTTP/1.1" 200 56933
+[28/May/2019 01:11:11] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:11:12] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:11:20] "GET /adminTestModel/case_log/?p=0 HTTP/1.1" 200 57393
+[28/May/2019 01:11:20] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:11:21] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:11:26] "GET /adminTestModel/case_log/?p=2 HTTP/1.1" 200 56973
+[28/May/2019 01:11:26] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:11:26] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:11:30] "GET /adminTestModel/case_log/?p=1 HTTP/1.1" 200 57006
+[28/May/2019 01:11:30] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:11:31] "GET /favicon.ico HTTP/1.1" 200 2758
+[28/May/2019 01:11:34] "GET /adminTestModel/case_log/?p=0 HTTP/1.1" 200 57393
+[28/May/2019 01:11:34] "GET /adminjsi18n/ HTTP/1.1" 200 3223
+[28/May/2019 01:11:34] "GET /favicon.ico HTTP/1.1" 200 2758
+/django/venv/auto_test/auto_test/__init__.py changed, reloading.
+Performing system checks...
+
+May 25, 2019 - 01:26:40
+Django version 2.2.1, using settings 'auto_test.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+['get_cpu_mem_job']
+[{'time': ['2019-05-24 04:45:55', '2019-05-24 04:47:49', '2019-05-24 04:50:26', '2019-05-24 05:00:44', '2019-05-24 05:03:27', '2019-05-24 05:06:20', '2019-05-24 08:21:19', '2019-05-24 08:26:34', '2019-05-24 08:28:24', '2019-05-24 08:34:37', '2019-05-24 08:39:05', '2019-05-24 09:02:53', '2019-05-24 09:31:04', '2019-05-24 18:34:42'], 'name': 'get_cpu_mem_job', 'status': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'id': [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}]
+['mERP_test_job']
+[{'time': [], 'name': 'mERP_test_job', 'status': [], 'id': []}]
+['mERP_test_job']
+[{'time': ['2019-05-24 01:09:01'], 'name': 'mERP_test_job', 'status': [0], 'id': [1]}]
+['mERP_test_job']
+[{'time': ['2019-05-24 01:09:01'], 'name': 'mERP_test_job', 'status': [0], 'id': [1]}]
+['mERP_test_job']
+[{'time': ['2019-05-24 01:09:01'], 'name': 'mERP_test_job', 'status': [0], 'id': [1]}]
+[]
+['network_test']
+[{'time': [], 'name': 'network_test', 'status': [], 'id': []}]
+[]
+----------------------------------------
+Exception happened during processing of request from ('172.21.30.146', 55442)
+----------------------------------------
+Traceback (most recent call last):
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/base.py", line 323, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 60, in execute
+    super().execute(*args, **options)
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/base.py", line 364, in execute
+    output = self.handle(*args, **options)
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 67, in handle
+    if not settings.DEBUG and not settings.ALLOWED_HOSTS:
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 157, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/usr/lib/python3.5/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 944, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "/django/venv/auto_test/auto_test/__init__.py", line 2, in <module>
+    from django_1.celery import app as celery_app
+ImportError: No module named 'django_1'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manage.py", line 21, in <module>
+    main()
+  File "manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line
+    utility.execute()
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 375, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/django/venv/lib/python3.5/site-packages/django/core/management/base.py", line 336, in run_from_argv
+    connections.close_all()
+  File "/django/venv/lib/python3.5/site-packages/django/db/utils.py", line 219, in close_all
+    for alias in self:
+  File "/django/venv/lib/python3.5/site-packages/django/db/utils.py", line 213, in __iter__
+    return iter(self.databases)
+  File "/django/venv/lib/python3.5/site-packages/django/utils/functional.py", line 80, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/django/venv/lib/python3.5/site-packages/django/db/utils.py", line 147, in databases
+    self._databases = settings.DATABASES
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/django/venv/lib/python3.5/site-packages/django/conf/__init__.py", line 157, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/usr/lib/python3.5/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 944, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "/django/venv/auto_test/auto_test/__init__.py", line 2, in <module>
+    from django_1.celery import app as celery_app
+ImportError: No module named 'django_1'

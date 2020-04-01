@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>devid operation </title>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/select2-develop/dist/js/i18n/zh-CN.js"></script>
+    <link href="/static/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+</head>
+<style>
+ body{
+     width: 100%;
+     height: 100%;
+ }
+ </style>
+<body>
+<div class="container">
+    <div class="row">
+                            <h2 style="text-align: center;background:#5CACEE">选择设备和操作模块</h2>
+        <div class="col-lg-4">
+            <label>设备ID：</label><br>
+            <input type="text" id="dev_id"/>
+        </div>
+        <div class="col-lg-4">
+            <label>所在环境：</label><select id="dev_env" class="form-control">
+            <option value=1>生产环境</option>
+            <option value=0>测试环境</option>
+        </select>
+        </div>
+        <div class="col-lg-4">
+            <label>操作模块：</label><select id="select_attr" class="form-control">
+            <option value=1>秤盘和weigh</option>
+            <option value=2>语音</option>
+            <option value=3>门锁</option>
+            <option value=4>信号</option>
+        </select>
+        </div>
+    </div>
+        <div class="row">
+			<div class="col-lg-4">
+                <input type="submit" id="select_attr_commit"/>
+			</div>
+        </div>
+        <div class="row" id="dev_info" style="display: none">
+            <div class="col-lg-12">
+                          <table class="table table-striped" id="dev_info_table">
+            <caption style="font-family: Arial;font-size: 20px">查询信息</caption>
+                              <thead>
+                              <tr>
+                                  <th>设备号</th>
+                                  <th>操作模块</th>
+                                  <th>状态</th>
+                              </tr>
+                              </thead>
+                              <tbody id="dev_info_value">
+                              <tr>
+                                  <td id="dev_name"></td>
+                                  <td id="dev_name_value"></td>
+                                  <td id="dev_status_value"></td>
+                              </tr>
+                              </tbody>
+                          </table>
+    </div>
+            </div>
+    <div class="row" id="query_title">
+        <div class="col-lg-12">
+            <table class="table table-striped" id="title_table">
+                <tbody id="operator_title">
+                </tbody>
+            </table>
+    </div>
+            <div class="row" id="result_display">
+                <div class="col-lg-12">
+                    <table class="table table-striped" id="table">
+            <caption style="font-family: Arial;font-size: 10px;display: none" id="query_result_tip">查询结果</caption>
+        <tbody id="operator_content">
+        </tbody>
+                    </table>
+    </div>
+                </div>
+    <div class="modal fade" id="date_input" tabindex="-1" role="dialog" aria-labelledby="dateinputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="input_label">门锁延时设置</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="input_body_value" id="input_body_parament">落锁时间</label>
+                        <input type="text" name="input_body_value" class="form-control" id="input_body_value" placeholder="落锁时间">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>配置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="alarm_output" tabindex="-1" role="dialog" aria-labelledby="alarmoutputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border-radius: 10px">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <img src="/static/alarm_red.jpg"height="50" width="50" style="display: block;margin: 0 auto">
+                </div>
+                <div class="modal-body" style="border: none">
+                        <input class="form-control" type="text" name="alarm_value_display" id="alarm_value_display" style="border:none;text-align:center ;color: #E60415;font-size: large"></input>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="weigh_attr_select" tabindex="-1" role="dialog" aria-labelledby="dateinputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="attr_select_label">weigh属性配置</h4>
+                </div>
+                <div class="modal-body">
+                        <label >属性值</label>
+                        <select class="form-control" id="input_weigh_attr_value" multiple="multiple" style="width: 200px">
+                            <option value=1 >上报异常购物车</option>
+                            <option value=2 >支持商品随意摆放</option>
+                            <option value=4 >支持上报购物车</option>
+                            <option value=0 >恢复初始值</option>
+                        </select>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="weigh_attr_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>配置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="weigh_layer_select" tabindex="-1" role="dialog" aria-labelledby="dateinputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="layer_select_label">设备类型</h4>
+                </div>
+                <div class="modal-body">
+                        <label >属性值</label>
+                        <select class="form-control" id="input_layer_select_value"style="width: 200px">
+                            <option value=5100 >5100</option>
+                            <option value=5200 >5200</option>
+                            <option value=4100 >4100</option>
+                            <option value=3112 >3112</option>
+                        </select>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="layer_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>配置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script>
+    $(function () {
+        $("#select_attr_commit").click(function () {
+            table_init("operator_title")
+            table_init("operator_content")
+            var dev_env = $("#dev_env").val();
+            var dev_attr = $("#select_attr").val();
+            var dev_id = $("#dev_id").val();
+            var dev_name_value = $("#select_attr").find("option:selected").text();
+            $.ajax({
+                url: "/dev_attr",
+                type: "POST",
+                async: false,
+                data: JSON.stringify({
+                    display_type: dev_attr,
+                    dev_id: dev_id,
+                    dev_env: dev_env,
+                }),
+                contentType: "application/json",
+                success: function (respons_date) {
+                    var respons_date_status=respons_date["output"]
+                    var device_status=respons_date_status[0]["dev_status"];
+                    if (device_status == 1) {
+                        $("#dev_name").css("background", "green");
+                        $("#dev_name_value").css("background", "green");
+                        $("#dev_status_value").css("background", "green");
+                        $("#dev_status_value").text("设备在线");
+                        $("#dev_name_value").text(dev_name_value);
+                        $("#dev_name").text(dev_id);
+                        $("#dev_info").css("display", "block");
+                        var rel_date = respons_date_status[1]["title_name"];
+                        console.log(rel_date)
+                        var title_row = rel_date.length;
+                        creathead("operator_title", title_row, rel_date);
+                        var $but_detail = $("input[type='button']");
+                        $($but_detail).each(function () {
+                            $(this).bind('click', function () {
+                                var but_id = $(this).attr("id");
+                                if (but_id == "lock_time") {
+                                    $("#input_label").text("门锁参数配置");
+                                    $("#input_body_parament").text("落锁延时时间");
+                                    $("#input_body_value").attr("placeholder", "时间"),
+                                        $("#date_input").modal("show");
+                                    $('#btn_submit').bind('click', function () {
+                                        var lock_time = $("#input_body_value").val();
+                                        var ajax_date = {
+                                            attr_type: dev_attr,
+                                            query_id: but_id,
+                                            dev_env: dev_env,
+                                            dev_id: dev_id,
+                                            lock_time: lock_time
+                                        };
+                                        ajax_send(ajax_date)
+                                    })
+                                } else if (but_id == "volume_set") {
+                                    $("#input_label").text("设置声音参数配置");
+                                    $("#input_body_parament").text("音量值配置");
+                                    $("#input_body_value").attr("placeholder", "音量值"),
+                                        $("#date_input").modal("show");
+                                    $('#btn_submit').bind('click', function () {
+                                        var volume_value = $("#input_body_value").val();
+                                        var ajax_date = {
+                                            attr_type: dev_attr,
+                                            query_id: but_id,
+                                            dev_env: dev_env,
+                                            dev_id: dev_id,
+                                            volume_value: volume_value
+                                        };
+                                        ajax_send(ajax_date);
+                                    })
+                                } else if (but_id == "weigh_attr_set") {
+                                    $("#weigh_attr_select").modal("show");
+                                    $('#weigh_attr_submit').bind('click', function () {
+                                        var weigh_attr_value = multi_select("input_weigh_attr_value");
+                                        attr_sum = 0
+                                        for (var i = 0; i < weigh_attr_value.length; i++) {
+                                            attr_sum = attr_sum + parseInt(weigh_attr_value[i]);
+                                        }
+                                        var ajax_date = {
+                                            attr_type: dev_attr,
+                                            query_id: but_id,
+                                            dev_env: dev_env,
+                                            dev_id: dev_id,
+                                            weigh_attr_value: attr_sum
+                                        };
+                                        ajax_send(ajax_date);
+                                    })
+                                } else {
+                                    var ajax_date = {
+                                        attr_type: dev_attr,
+                                        query_id: but_id,
+                                        dev_env: dev_env,
+                                        dev_id: dev_id
+                                    };
+                                    ajax_send(ajax_date);
+                                }
+
+                            })
+                        })
+                    } else if (device_status == 0) {
+                        $("#dev_name").css("background", "red");
+                        $("#dev_name_value").css("background", "red");
+                        $("#dev_status_value").css("background", "red");
+                        $("#dev_status_value").text("设备离线");
+                        $("#dev_name_value").text(dev_name_value);
+                        $("#dev_name").text(dev_id);
+                        $("#dev_info").css("display", "block");
+                        $("#alarm_value_display").val("设备离线");
+                        $("#alarm_output").modal("show");
+
+                    } else {
+
+                        $("#dev_name").css("background", "red");
+                        $("#dev_name_value").css("background", "red");
+                        $("#dev_status_value").css("background", "red");
+                        $("#dev_status_value").text(device_status);
+                        $("#dev_name_value").text(dev_name_value);
+                        $("#dev_name").text(dev_id);
+                        $("#dev_info").css("display", "block");
+                        $("#alarm_value_display").val(device_status);
+                        $("#alarm_output").modal("show");
+                    }
+                }
+            })
+        })
+    })
+    function table_init(table_id) {
+        var table_attr=document.getElementById(table_id);
+        var table_row=table_attr.rows.length;
+            for (var i = table_row-1; i>=0; i--) {
+                table_attr.deleteRow(i);
+            }
+        }
+    function create_table(table_id,row,display_date) {
+        var editbody=document.getElementById(table_id);
+        for(var i=0;i<row;i++){
+            var tr=document.createElement("tr");
+            var sub_display_date=display_date[i];
+            var td0=document.createElement("td");
+            var td1=document.createElement("td");
+            for (var key in sub_display_date){
+                td0.innerHTML=key;
+                td1.innerHTML=sub_display_date[key];
+                }
+            tr.appendChild(td0);
+            tr.appendChild(td1);
+            editbody.appendChild(tr);
+            }
+    }
+    function creathead(thead_id,row,display_date) {
+                var editbody=document.getElementById(thead_id);
+                var tr=document.createElement("tr");
+                for(var i=0;i<row;i++){
+                    var td=document.createElement("td");
+                    var but=document.createElement("input");
+                    but.type="button";
+                    but.style.width=30;
+                    but.style.width=40;
+                    for(var key in display_date[i]){
+                        but.id=key;
+                        but.value=display_date[i][key];
+                    }
+                    td.appendChild(but);
+                    tr.appendChild(td);
+                }
+                editbody.appendChild(tr);
+    }
+function ajax_send(ajax_date) {
+        $.ajax({
+                                url: "/ajax_attr_value",
+                                type: 'POST',
+                                async: false,
+                                data: JSON.stringify(ajax_date),
+                                contentType: "application/json",
+                                success: function (respons_date) {
+                                    $("#query_result_tip").css("display","block")
+                                    table_init("operator_content");
+                                    console.log(respons_date)
+                                    var dev_display_date=respons_date["output"];
+                                    var table_row=dev_display_date.length;
+                                    create_table("operator_content",table_row,dev_display_date);
+                                }
+                            })
+
+}
+    $("#input_weigh_attr_value").select2({
+        tags: true,
+            });
+    function multi_select(select_object) {
+        var select_list= new Array();
+        var obj_select_id=document.getElementById(select_object);
+        var object_options=obj_select_id.options;
+        for (var i=0;i<object_options.length;i++){
+            if (object_options[i].selected){
+                select_list.push(object_options[i].value);
+            }
+        }
+        return select_list
+    }
+
+</script>
+</body>
+</html>

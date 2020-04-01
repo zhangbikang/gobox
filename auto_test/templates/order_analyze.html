@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order_analyze</title>
+        <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/js/jquery.lazyload.min.js"></script>
+    <script src="/static/js/jquery.lazyload.js"></script>
+    <link href="/static/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+                            <h2 style="text-align: center;background:#5CACEE">图像柜订单分析</h2>
+        <div class="col-lg-3">
+            <label>设备ID：</label><br>
+            <input type="text" id="dev_id"/>
+        </div>
+        <div class="col-lg-3">
+            <label>所在环境：</label><select id="dev_env" class="form-control">
+            <option value=1>生产环境</option>
+            <option value=0>测试环境</option>
+        </select>
+        </div>
+        <div class="col-lg-3">
+            <label>ERP登入用户名：</label><br>
+            <input type="text" id="Erp_user" value="HZ05791"/>
+        </div>
+                <div class="col-lg-3">
+            <label>ERP登入密码：</label><br>
+            <input type="password" id="Erp_pw" value="76831213"/>
+        </div>
+    </div>
+        <div class="row">
+			<div class="col-lg-4">
+                <input type="submit" id="select_attr_commit"/>
+			</div>
+        </div>
+            <div class="row" id="dev_info" style="display: none">
+            <div class="col-lg-12">
+                          <table class="table table-striped" id="dev_info_table">
+            <caption style="font-family: Arial;font-size: 20px">查询信息</caption>
+                              <thead>
+                              <tr>
+                                  <th>设备号</th>
+                                  <th>状态</th>
+                              </tr>
+                              </thead>
+                              <tbody id="dev_info_value">
+                              <tr>
+                                  <td id="dev_name"></td>
+                                  <td id="dev_name_value"></td>
+                              </tr>
+                              </tbody>
+                          </table>
+    </div>
+            </div>
+    <div class="row"  id="select_dev_type" style="display: none">
+        <table class="table table-striped" id="select_dev_type_table">
+            <caption style="font-family: Arial;font-size: 20px">输入设备类型和Trans ID</caption>
+            <thead>
+                <tr>
+                    <th>设备类型</th>
+                    <th>Trans ID</th>
+                    <th>分析</th>
+                    <th>图像查看</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <select id="selcet_Gpa_type">
+                            <option value="AS">虹软静态</option>
+                            <option value="CM">CloudMinds 静态</option>
+                        </select>
+                    </td>
+                    <td>
+                         <input type="text" id="trans_id_value"/>
+                    </td>
+                    <td>
+                        <input type="submit" id="commit_trans_id" value="日志分析"/>
+                    </td>
+                    <td><input type="submit" id="get_picture" value="查看图像"></td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="row" id ="change_goods_display" style="display: none">
+         <table class="table table-bordered" id="change_goods_title">
+            <caption style="font-family: Arial;font-size: 20px">图像识别变化的商品</caption>
+             <thead>
+             <tr>
+                 <th colspan="3" style="background-color: #5E5694 ;font-size: 20px">第一层</th>
+                 <th colspan="3" style="background-color: #5E5694 ;font-size: 20px">第二层</th>
+                 <th colspan="3" style="background-color: #5E5694 ;font-size: 20px">第三层</td>
+                 <th colspan="3" style="background-color: #5E5694 ;font-size: 20px">第四层</th>
+             </tr>
+             <tr>
+                 <th style="background-color:#3E87E3;font-size: 15px">商品名字</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">数量</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">状态</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">商品名字</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">数量</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">状态</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">商品名字</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">数量</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">状态</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">商品名字</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">数量</th>
+                 <th style="background-color:#3E87E3 ;font-size: 15px">状态</th>
+             </tr>
+             </thead>
+             <tbody id="change_goods">
+         </tbody>
+             <th style="background-color:#A8FF60;font-size: 15px">图像变化商品重量</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">实际秤盘变化值</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">状态</th>
+             <th style="background-color:#A8FF60;font-size: 15px">图像变化商品重量</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">实际秤盘变化值</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">状态</th>
+             <th style="background-color:#A8FF60;font-size: 15px">图像变化商品重量</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">实际秤盘变化值</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">状态</th>
+             <th style="background-color:#A8FF60;font-size: 15px">图像变化商品重量</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">实际秤盘变化值</th>
+             <th style="background-color:#A8FF60 ;font-size: 15px">状态</th>
+             </tr>
+             </thead>
+             <tbody id="change_weight">
+         </tbody>
+              <tr>
+                 <th colspan="12" style="background-color: #cc6666 ;font-size: 15px;text-align: center">开门识别</th>
+             </tr>
+             <tr>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+             </tr>
+             </thead>
+             <tbody id="open_goods_info">
+         </tbody>
+              <tr>
+                 <th colspan="12" style="background-color: #cc6666 ;font-size: 15px;text-align: center">关门识别</th>
+             </tr>
+             <tr>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th  colspan="2" style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+                 <th colspan="2"  style="background-color:#FF8C00;font-size: 15px">商品</th>
+                 <th style="background-color:#FF8C00 ;font-size: 15px">数量</th>
+             </tr>
+              <tbody id="close_goods_info">
+         </tbody>
+         </table>
+</div>
+<div class="row" id="goods_image_display" style="display: none">
+    <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h3>开门图像识别</h3>
+    </div>
+        </div>
+    <div class="row">
+<div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png" id="open_layer_1" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img  class="img-circle" src="/static/default_img.png" id="open_layer_2" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png" id="open_layer_3" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png"  id="open_layer_4" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+</div>
+        <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h3>关门图像识别</h3>
+    </div>
+        </div>
+    <div class="row">
+<div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png"  id="close_layer_1" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png" id="close_layer_2" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png" id="close_layer_3" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+    <img class="img-circle" src="/static/default_img.png"  id="close_layer_4" style="height:100%;width: 100%" onclick=big_image(this)>
+</div>
+</div>
+    </div>
+</div>
+        <div class="modal" id="alarm_output" tabindex="-1" role="dialog" aria-labelledby="alarmoutputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border-radius: 10px">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <img src="/static/alarm_red.jpg"height="50" width="50" style="display: block;margin: 0 auto">
+                </div>
+                <div class="modal-body" style="border: none">
+                        <input class="form-control" type="text" name="alarm_value_display" id="alarm_value_display" style="border:none;text-align:center ;color: #E60415;font-size: large"></input>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal" id="bar" tabindex="-1" role="dialog" aria-labelledby="alarmoutputlabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="border: none">
+                                    <div class="progress progress-striped active">
+    <div class="progress-bar progress-bar-success" role="progressbar" id="down_load_bar"
+         style="width: 2%;">
+        <span class="sr-only">40% 完成</span>
+    </div>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        <div class="modal" id="big_image_title" tabindex="-1" role="dialog" aria-labelledby="alarmoutputlabel">
+                    <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body" >
+                <img src="/static/default_img.png" id="big_image" >
+				</div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>确定</button>
+                </div>
+            </div>
+                    </div>
+    </div>
+
+<script>
+    $("#select_attr_commit").click(function () {
+        $("#goods_image_display").css("display","none");
+        $("#change_goods_display").css("display","none");
+        var dev_env=$("#dev_env").val();
+        var login_user=$("#Erp_user").val();
+        var login_pw=$("#Erp_pw").val();
+        var dev_id=$("#dev_id").val();
+        $.ajax({
+            url:"analyze_process",
+            type: 'POST',
+            async: false,
+            data: JSON.stringify({
+                dev_env:dev_env,
+                dev_id:dev_id,
+                login_user:login_user,
+                login_pw:login_pw,
+            }),
+            contentType: "application/json",
+            success: function (respons_date) {
+                respons_date = JSON.parse(respons_date);
+                var inital_status=respons_date["output"][0]["dev_status"]
+                if (inital_status=="Analyze ready"){
+                    $("#dev_info").css("display","block");
+                    $("#dev_name").css("background","green");
+                    $("#dev_name_value").css("background","green");
+                    $("#dev_name").text(dev_id);
+                    $("#dev_name_value").text("Analyze ready");
+                    $("#select_dev_type").css("display","block");
+                }else {
+                    $("#dev_info").css("display","block");
+                    $("#dev_name").css("background","red");
+                    $("#dev_name_value").css("background","red");
+                    $("#dev_name").text(dev_id);
+                    $("#dev_name_value").text(inital_status);
+                    $("#alarm_value_display").val(inital_status);
+                    $("#alarm_output").modal("show");
+                    $("#select_dev_type").css("display","block");
+                }
+            }
+        }
+        )
+    })
+    $("#commit_trans_id").click(function () {
+        var dev_type=$("#selcet_Gpa_type").val();
+        var trans_id_org=$("#trans_id_value").val();
+        var trans_id=trans_id_org.replace(/(\u200c)|(\t)/g,"");
+        var dev_id=$("#dev_id").val();
+        var dev_env=$("#dev_env").val();
+        var login_pw=$("#Erp_pw").val();
+        var login_user=$("#Erp_user").val();
+        $.ajax({
+            url: "get_trans_id",
+            type:"POST",
+            async: false,
+            data: JSON.stringify({
+                type:dev_type,
+                trans_id:trans_id,
+                dev_id:dev_id,
+                dev_env:dev_env,
+                login_user:login_user,
+                login_pw:login_pw,
+                file_type:"log",
+                operation:"get_file",
+            }),
+            contentType: "application/json",
+            success:function (response_date) {
+                var check_file_status=response_date["down_load_status"];
+                if (check_file_status=="success"){
+                    $("#bar").modal("show");
+                    bar_move(dev_type,trans_id,dev_id,dev_env,login_user,login_pw);
+            }
+                else if(check_file_status=="file is exist local") {
+                     analyze_order(dev_type,trans_id,dev_id,dev_env,login_user,login_pw)
+                    $("#goods_image_display").css("display","none");
+                    $("#change_goods_display").css("display","block");
+                }
+                else if (check_file_status=="cm image file is exist local"){
+                     analyze_order(dev_type,trans_id,dev_id,dev_env,login_user,login_pw)
+                    $("#goods_image_display").css("display","none");
+                    $("#change_goods_display").css("display","block");
+                }
+                else {
+                    $("#alarm_value_display").val(check_file_status);
+                    $("#alarm_output").modal("show");
+                }
+            }
+        })
+
+
+    })
+    $("#get_picture").click(function () {
+        var dev_type=$("#selcet_Gpa_type").val();
+        var trans_id_org=$("#trans_id_value").val();
+        var trans_id=trans_id_org.replace(/(\u200c)|(\t)/g,"");
+        var dev_id=$("#dev_id").val();
+        var dev_env=$("#dev_env").val();
+        $.ajax({
+            url: "get_trans_id",
+            type:"POST",
+            async: false,
+            data: JSON.stringify({
+                type:dev_type,
+                trans_id:trans_id,
+                dev_id:dev_id,
+                dev_env:dev_env,
+                file_type:"image",
+                operation:"get_image",
+            }),
+            contentType: "application/json",
+            success:function (response_date) {
+                var check_file_status=response_date["down_load_status"];
+                var file_list=response_date["file_list"];
+                if (check_file_status=="success"){
+                    $("#bar").modal("show");
+                    var setin=setInterval(function () {
+                        $.ajax({
+                            url:"get_down_process",
+                            type:"POST",
+                            async:false,
+                            contentType: "application/json",
+                            success:function (response_date) {
+                                var date = response_date["output"]
+                                var process_size = date[0];
+                                var sum_size = date[1];
+                                var process = process_size / sum_size * 100;
+                                var progress_bar = parseInt(process) + "%"
+                                $("#down_load_bar").css("width", progress_bar)
+                                if (process_size == sum_size) {
+                                    if (dev_type == "CM") {
+                                        clearInterval(setin);
+                                        $("#bar").modal("hide");
+                                        $("#down_load_bar").css("width",0)
+                                        init_img()
+                                        $("#change_goods_display").css("display", "none");
+                                        cm_get_image(dev_type, trans_id, dev_id, dev_env, login_user, login_pw)
+                                        $("#goods_image_display").css("display", "block");
+
+                                } else if (dev_type == "AS") {
+                                        clearInterval(setin);
+                                        $("#bar").modal("hide");
+                                        $("#down_load_bar").css("width",0)
+                                        init_img()
+                                        $("#change_goods_display").css("display", "none");
+                                        display_image(file_list,dev_type)
+                                        $("#goods_image_display").css("display", "block");
+                                                                        }
+                            }
+                        }
+                        })
+                    },1000)
+                    }
+                else if (check_file_status=="file is exist local"){
+                    init_img()
+                    $("#change_goods_display").css("display","none");
+                    display_image(file_list,dev_type)
+                    $("#goods_image_display").css("display","block");
+                }else if (check_file_status=="cm image file is exist local"){
+                    init_img()
+                    $("#change_goods_display").css("display","none");
+                     display_cm_image(file_list)
+                    $("#goods_image_display").css("display","block");
+                }
+                else {
+                    $("#alarm_value_display").val(check_file_status);
+                    $("#alarm_output").modal("show");
+                }
+            }
+        })
+        
+    })
+        function analyze_order(dev_type,trans_id,dev_id,dev_env,login_user,login_pw) {
+            $.ajax({
+                url: "get_trans_id",
+                type: "POST",
+                async: false,
+                data: JSON.stringify({
+                    type: dev_type,
+                    trans_id: trans_id,
+                    dev_id: dev_id,
+                    dev_env:dev_env,
+                    login_user:login_user,
+                    login_pw:login_pw,
+                    operation: "analyze_operation",
+                }),
+                contentType: "application/json",
+                success: function (response_date) {
+                    var goods_date=response_date["output"]
+                    table_init("change_goods")
+                    create_table("change_goods",goods_date)
+                    table_init("change_weight")
+                    create_chgweight_table("change_weight",goods_date)
+                     table_init("open_goods_info")
+                    create_open_close_table("open_goods_info",goods_date,"open")
+                    table_init("close_goods_info")
+                    create_open_close_table("close_goods_info",goods_date,"close")
+
+                }
+            })
+        }
+        function cm_get_image(dev_type,trans_id,dev_id,dev_env,login_user,login_pw){
+        $.ajax({
+                url: "get_trans_id",
+                type: "POST",
+                async: false,
+                data: JSON.stringify({
+                    type: dev_type,
+                    trans_id: trans_id,
+                    dev_id: dev_id,
+                    dev_env:dev_env,
+                    login_user:login_user,
+                    login_pw:login_pw,
+                    operation: "analyze_operation",
+                }),
+                contentType: "application/json",
+                success: function (response_date) {
+                    var goods_date=response_date["output"]
+                    var image_date=[goods_date["open_image_url_date"],goods_date["close_image_url_date"]]
+                    display_cm_image(image_date)
+                }
+            })
+
+        }
+function create_table(table_id,display_date) {
+    var creat_table_row=0
+    var change_goods=display_date[2]["change_goods"]
+    for (var key in change_goods){
+        var layer_row=change_goods[key].length
+        if (layer_row>=creat_table_row){
+            creat_table_row=layer_row
+        }
+    }
+    var editbody = document.getElementById(table_id);
+    for (var i = 0; i < creat_table_row; i++) {
+        var tr = document.createElement("tr");
+        var td0 = document.createElement("td");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+        var td5 = document.createElement("td");
+        var td6 = document.createElement("td");
+        var td7 = document.createElement("td");
+        var td8 = document.createElement("td");
+        var td9 = document.createElement("td");
+        var td10 = document.createElement("td");
+        var td11 = document.createElement("td");
+        for (var key in change_goods) {
+            switch (key) {
+                case "010101":
+                    if (change_goods[key].length > i) {
+                        td0.innerHTML = change_goods[key][i]["goodsname"];
+                        td1.innerHTML = change_goods[key][i]["goodsnum"];
+                        if (change_goods[key][i]["change_type"] == 2) {
+                            td2.innerHTML = "减少";
+                        } else if (change_goods[key][i]["change_type"] == 4) {
+                            td2.innerHTML = "增加";
+                        }
+                    }
+                    break
+                case "010201":
+                    if (change_goods[key].length > i) {
+                        td3.innerHTML = change_goods[key][i]["goodsname"];
+                        td4.innerHTML = change_goods[key][i]["goodsnum"];
+                        if (change_goods[key][i]["change_type"] == 2) {
+                            td5.innerHTML = "减少";
+                        } else if (change_goods[key][i]["change_type"] == 4) {
+                            td5.innerHTML = "增加";
+                        }
+                    }
+                    break
+                case "010301":
+                    if (change_goods[key].length > i) {
+                        td6.innerHTML = change_goods[key][i]["goodsname"];
+                        td7.innerHTML = change_goods[key][i]["goodsnum"];
+                        if (change_goods[key][i]["change_type"] == 2) {
+                            td8.innerHTML = "减少";
+                        } else if (change_goods[key][i]["change_type"] == 4) {
+                            td8.innerHTML = "增加";
+                        }
+                    }
+                    break
+                case "010401":
+                    if (change_goods[key].length > i) {
+                        td9.innerHTML = change_goods[key][i]["goodsname"];
+                        td10.innerHTML = change_goods[key][i]["goodsnum"];
+                        if (change_goods[key][i]["change_type"] == 2) {
+                            td11.innerHTML = "减少";
+                        } else if (change_goods[key][i]["change_type"] == 4) {
+                            td11.innerHTML = "增加";
+                        }
+                    }
+                    break
+            }
+            tr.appendChild(td0);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+            tr.appendChild(td7);
+            tr.appendChild(td8);
+            tr.appendChild(td9);
+            tr.appendChild(td10);
+            tr.appendChild(td11);
+            editbody.appendChild(tr);
+        }
+        editbody.appendChild(tr)
+    }
+
+}
+function create_chgweight_table(table_id,display_date) {
+    var change_weight=display_date[3]["chg_weight"]
+    var acutal_change_weight=display_date[4]["actual_change_weight"]
+    var editbody = document.getElementById(table_id);
+    var tr = document.createElement("tr");
+    var p_change_weight= ["010101","010201","010301","010401"];
+    for (var i=0;i<4;i++){
+        var ai_chg_flag=true;
+        var g_chg_flag=true;
+        var td0=document.createElement("td");
+        var td1=document.createElement("td");
+        var td2=document.createElement("td");
+        for (var key in change_weight){
+            if (key==p_change_weight[i]){
+                if(change_weight[key]){
+                    td0.innerHTML=change_weight[key];
+                    ai_chg_flag=false;
+                }
+                else {
+                    td0.innerHTML=0
+                }
+                break;
+            }else {
+                td0.innerHTML=0;
+            }
+        }
+        for (var key in acutal_change_weight){
+            if (key==p_change_weight[i]){
+                td1.innerHTML=acutal_change_weight[key];
+                g_chg_flag=false;
+                break;
+            }else {
+                td1.innerHTML="获取重量失败";
+            }
+        }
+        if (ai_chg_flag ) {
+            if (-8 < parseInt(acutal_change_weight[p_change_weight[i]]) && parseInt(acutal_change_weight[p_change_weight[i]]) < 8) {
+                td2.innerHTML = "匹配";
+                td2.style.backgroundColor="green"
+            } else {
+                td2.innerHTML = "不匹配";
+                td2.style.backgroundColor="red";
+            }
+        }else if(g_chg_flag){
+            td2.innerHTML="不匹配";
+            td2.style.backgroundColor="red"
+        }else {
+            if (parseInt(change_weight[p_change_weight[i]][0]) <= parseInt(acutal_change_weight[p_change_weight[i]]) && parseInt(acutal_change_weight[p_change_weight[i]])<= parseInt(change_weight[p_change_weight[i]][1])){
+                td2.innerHTML = "匹配";
+                td2.style.backgroundColor="green"
+            }else {
+                td2.innerHTML="不匹配";
+                td2.style.backgroundColor="red"
+            }
+        }
+        tr.appendChild(td0);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+
+    }
+    editbody.appendChild(tr)
+
+}
+function create_open_close_table(table_id,display_date,type) {
+    if (type == "open") {
+        var goods_date = display_date[0]["open_goods"]
+    } else if (type == "close") {
+        var goods_date = display_date[1]["close_goods"]
+    }
+    var editbody = document.getElementById(table_id);
+    var creat_table_row = 0;
+    for (var key in goods_date) {
+        var layer_row = goods_date[key].length
+        if (layer_row >= creat_table_row) {
+            creat_table_row = layer_row
+        }
+    }
+for (var i = 0; i < creat_table_row; i++) {
+        var tr = document.createElement("tr");
+        var td0 = document.createElement("td");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+        var td5 = document.createElement("td");
+        var td6 = document.createElement("td");
+        var td7 = document.createElement("td");
+        td0.colSpan=2;
+        td2.colSpan=2;
+        td4.colSpan=2;
+        td6.colSpan=2;
+        for (var key in goods_date) {
+            switch (key) {
+                case "010101":
+                    if (goods_date[key].length > i) {
+                        td0.innerHTML = goods_date[key][i]["goodsname"];
+                        td1.innerHTML = goods_date[key][i]["goodsnum"];
+                    }
+                    break
+                case "010201":
+                    if (goods_date[key].length > i) {
+                        td2.innerHTML = goods_date[key][i]["goodsname"];
+                        td3.innerHTML = goods_date[key][i]["goodsnum"];
+                    }
+                    break
+                case "010301":
+                    if (goods_date[key].length > i) {
+                        td4.innerHTML = goods_date[key][i]["goodsname"];
+                        td5.innerHTML = goods_date[key][i]["goodsnum"];
+                    }
+                    break
+                case "010401":
+                    if (goods_date[key].length > i) {
+                        td6.innerHTML = goods_date[key][i]["goodsname"];
+                        td7.innerHTML = goods_date[key][i]["goodsnum"];
+                    }
+                    break
+            }
+            tr.appendChild(td0);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+            tr.appendChild(td7);
+
+            editbody.appendChild(tr);
+        }
+        editbody.appendChild(tr)
+    }
+}
+    function table_init(table_id) {
+        var table_attr=document.getElementById(table_id);
+        var table_row=table_attr.rows.length;
+            for (var i = table_row-1; i>=0; i--) {
+                table_attr.deleteRow(i);
+            }
+        }
+    function display_image(file_list,dev_type) {
+        if (dev_type=="AS"){
+            var base_path="/static/log/AS/image/"
+            var open_image_index=[/open_010101/,/open_010201/,/open_010301/,/open_010401/]
+            var close_image_index=[/close_010101/,/close_010201/,/close_010301/,/close_010401/]
+            var open_display_index=["open_layer_1","open_layer_2","open_layer_3","open_layer_4"]
+            var close_display_index=["close_layer_1","close_layer_2","close_layer_3","close_layer_4"]
+            for( var i=0;i<4;i++){
+                for(var j=0;j<file_list.length;j++){
+                    var open_image_flag=open_image_index[i].test(file_list[j]);
+                    var close_image_flag=close_image_index[i].test(file_list[j]);
+                    if (open_image_flag){
+                        var open_image_link=base_path+file_list[j];
+                        document.getElementById(open_display_index[i]).setAttribute("src",open_image_link);
+                    }
+                    if (close_image_flag){
+                        var close_image_link=base_path+file_list[j];
+                        document.getElementById(close_display_index[i]).setAttribute("src",close_image_link);
+
+
+                    }
+                    setTimeout(function () {
+
+                    },500)
+
+                }
+            }
+            }
+        }
+    function display_cm_image(image_date){
+        var open_display_index=["open_layer_1","open_layer_2","open_layer_3","open_layer_4"];
+        var close_display_index=["close_layer_1","close_layer_2","close_layer_3","close_layer_4"];
+        for(var j=0;j<image_date.length;j++){
+            for(var key in image_date[j]){
+                switch (key) {
+                    case "010101":
+                        if (j==0){
+                            document.getElementById(open_display_index[0]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        else if (j==1){
+                            document.getElementById(close_display_index[0]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        break
+                    case "010201":
+                        if (j==0){
+                            document.getElementById(open_display_index[1]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        else if (j==1){
+                            document.getElementById(close_display_index[1]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        break
+                    case "010301":
+                        if (j==0){
+                            document.getElementById(open_display_index[2]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        else if (j==1){
+                            document.getElementById(close_display_index[2]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        break
+                    case "010401":
+                        if (j==0){
+                            document.getElementById(open_display_index[3]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        else if (j==1){
+                            document.getElementById(close_display_index[3]).setAttribute("src",image_date[j][key].toString());
+                        }
+                        break
+                }
+        }
+
+        }
+
+    }
+    function init_img() {
+        var img_index=["open_layer_1","open_layer_2","open_layer_3","open_layer_4","close_layer_1","close_layer_2","close_layer_3","close_layer_4"]
+        for(var i=0;i<img_index.length;i++){
+             document.getElementById(img_index[i]).setAttribute("src","/static/default_img.png");
+        }
+    }
+    function big_image(obj){
+        var image=new Image()
+        var img_src=obj.src;
+        image.src=img_src;
+        var width_org=image.width/2;
+        var hight_org=image.height/2;
+        $("#big_image").attr("src",img_src);
+        $("#big_image").css("width",width_org);
+        $("#big_image").css("height",hight_org);
+        $("#big_image_title").css("width",width_org);
+        $("#big_image_title").modal("show");
+
+    }
+
+    function query_process() {
+        $.ajax({
+            url: "get_down_process",
+            type: "POST",
+            async: false,
+            contentType: "application/json",
+            success: function (response_date) {
+                var date = response_date["output"]
+
+                return date
+            }
+        })
+    }
+function bar_move(dev_type,trans_id,dev_id,dev_env,login_user,login_pw){
+	var setin=setInterval(query_process,800);
+	function query_process(){
+		$.ajax({
+		url:"get_down_process",
+		type:"POST",
+		async:false,
+		contentType: "application/json",
+		success:function (response_date) {
+			var date=response_date["output"]
+			var process_size=date[0];
+			var sum_size=date[1];
+			var process=process_size/sum_size*100;
+			var progress_bar=parseInt(process)+"%"
+			console.log(progress_bar);
+			$("#down_load_bar").css("width",progress_bar);
+			if (process_size==sum_size){
+				clearInterval(setin);
+				$("#bar").modal("hide");
+				$("#down_load_bar").css("width",0);
+				analyze_order(dev_type,trans_id,dev_id,dev_env,login_user,login_pw);
+				$("#goods_image_display").css("display","none");
+				$("#change_goods_display").css("display","block");
+				}
+			}
+	})
+
+}
+}
+
+
+
+</script>
+</body>
+</html>

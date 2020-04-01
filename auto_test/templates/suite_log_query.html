@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+    <title>Suite log </title>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/select2-develop/dist/js/i18n/zh-CN.js"></script>
+    <link href="/static/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 style="text-align: center;background:#5CACEE">脚本状态查询</h2>
+    </div>
+    <div class="row" id="query_job_select">
+        <div class="col-lg-3">
+            <label>起始时间:</label><input class="form-control" type="date" id="query_st" value="2019-05-01" />
+			</div>
+			<div class="col-lg-3">
+            <label>结束时间:</label><input class="form-control" type="date" id="query_et" value="2019-05-01" />
+			</div>
+			<div class="col-lg-3">
+            <label>脚本名字:</label><select name="query_job_name" id="query_job_name"class="form-control" multiple="multiple" >
+                <option value="get_cpu_mem_job" >get_cpu_mem_job</option>
+                <option value="network_test" >network_test</option>
+                <option value="monitor_test" >monitor_test</option>
+                <option value="mERP_test_job" >mERP_test_job</option>
+                <option value="CM_Get_Sku">CM_Get_Sku</option>
+                <option value="AS_Get_Sku">AS_Get_Sku</option>
+			</select>
+			</div>
+        			<div class="col-lg-3">
+            <label>脚本状态:</label><select name="query_job_status" id="query_job_status"class="form-control" multiple="multiple" >
+                <option value="SUCCESS" >SUCCESS</option>
+                <option value="STARTED" >STARTED</option>
+                <option value="FAILURE" >FAILURE</option>
+                <option value="PENDING" >PENDING</option>
+                        <option value="RECEIVED" >RECEIVED</option>
+                        <option value="RETRY" >RETRY</option>
+                        <option value="REVOKED" >REVOKED</option>
+			</select>
+			</div>
+                </div>
+    <div class="row">
+			<div class="col-lg-3">
+                <button id="query_suite_id">确定</button>
+			</div>
+        </div>
+
+    <div class="row" id="job_status">
+        <table class="table table-striped" id="table">
+            <caption style="font-family: Arial;font-size: 30px">脚本运行状态</caption>
+            <thead>
+            <tr>
+                <th>脚本ID</th>
+                <th>脚本名字</th>
+                <th>运行状态</th>
+                <th>详细信息</th>
+                <th>操作</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+            $("#query_job_name").select2({
+        tags: true,
+    });
+                        $("#query_job_status").select2({
+        tags: true,
+    });
+            $("#query_suite_id").click(function () {
+                var job_table=document.getElementById("tbody");
+                var rowlen=job_table.rows.length;
+                for(var i=rowlen-1;i>=0;i--){
+                    job_table.deleteRow(i);
+                }
+            var obj_st = document.getElementById("query_st");
+            var start_time = obj_st.value;
+            var obj_et = document.getElementById("query_et");
+            var end_time = obj_et.value;
+            var job_name_list= new Array();
+            var obj=document.getElementById("query_job_name");
+            var options=obj.options;
+            for (var i=0;i<options.length;i++){
+                if (options[i].selected){
+                    job_name_list.push(options[i].value);
+            }
+        }
+                           var job_status_list = new Array()
+                var obj_status = document.getElementById("query_job_status");
+                var options_status = obj_status.options;
+                for (var i = 0; i < options_status.length; i++) {
+                    if (options_status[i].selected) {
+                        job_status_list.push(options_status[i].value);
+                    }
+                }
+            $.ajax({
+                url:"query_job_status",
+                type:'POST',
+                data:JSON.stringify({
+                    job_name:job_name_list,
+                    start_time: start_time,
+                    end_time: end_time,
+                    job_stats:job_status_list
+            }),
+                async:false,
+            contentType:"application/json",
+            success:function (respons_date) {
+                respons_date = JSON.parse(respons_date);
+                var output_dat = new Array();
+                output_dat = respons_date["output"]
+                var table_row=output_dat.length;
+                if (table_row>0){
+                    for (var i=0;i< table_row;i++){
+                        var status_list=output_dat[i]["status"];
+                        var time_list=output_dat[i]["time"];
+                        var job_name=output_dat[i]["name"];
+                        var id=output_dat[i]["id"];
+                        for(var j=0;j< status_list.length;j++) {
+                            var editTable = document.getElementById("tbody");
+                            var tr=document.createElement("tr");
+                            var td0=document.createElement("td");
+                            td0.innerHTML=job_name[j];
+                            var td1=document.createElement("td");
+                            var jb_status=status_list[j];
+                            td1.innerHTML=jb_status;
+                            var td2=document.createElement("td");
+                            td2.innerHTML=time_list[j];
+                            var td4=document.createElement("td");
+                            td4.innerHTML=id[j];
+                            var td5=document.createElement("td");
+                            var but_detail = document.createElement("input");
+                            but_detail.type = "button";
+                            but_detail.name = "detail_log";
+                            but_detail.id = id[j];
+                            but_detail.value = "详细信息";
+                            but_detail.style.width = 40;
+                            but_detail.style.height = 30;
+                            td5.appendChild(but_detail);
+                            var td6=document.createElement("td");
+                            var but_operation = document.createElement("input");
+                            but_operation.type = "button";
+                            but_operation.name = "operation";
+                            but_operation.id = id[j];
+                            but_operation.value = "停止";
+                            but_operation.style.width = 40;
+                            but_operation.style.height = 30;
+                            if (jb_status != "STARTED"){
+                                but_operation.disabled=true;
+                            }
+                            td6.appendChild(but_operation);
+
+                tr.appendChild(td4);
+                tr.appendChild(td0);
+                tr.appendChild(td1);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td2);
+                editTable.appendChild(tr);
+            }
+                        var $but_detail = $("input[type='button']");
+                $($but_detail).each(function () {
+                    $(this).bind('click', function () {
+                        var but_id = $(this).attr("id");
+                        var but_name=$(this).attr("name");
+                        if (but_name=="detail_log"){
+                            var but_info="suite_info"
+                        }else if (but_name=="operation"){
+                            var but_info="suite_operation"
+                        }
+                        $.ajax({
+                            url: "/ajax_query_log_detail",
+                            type: 'POST',
+                            async: false,
+                            data: JSON.stringify({
+                                query_type:"suite_log",
+                                query_operation: but_info,
+                                query_id: but_id,
+                            }),
+                            contentType: "application/json",
+                            success: function (respons_date) {
+                                respons_date = JSON.parse(respons_date);
+                                alert(respons_date["info"])
+                            }
+                        })
+
+                    })
+                });
+
+    }
+    }
+            }
+
+            })
+        });
+                    $(document).ready(function () {
+                        var time=new Date(Date());
+            time.setDate(time.getDate()+1);
+            var day=("0"+time.getDate()).slice(-2);
+            var month=("0"+(time.getMonth()+1)).slice(-2);
+            var year=time.getFullYear()
+            var today=(year)+"-"+(month)+"-"+(day);
+            $("#query_et").val(today);
+            var start_time=new Date(today);
+            start_time.setDate(start_time.getDate()-3);
+            var start_month=("0"+(start_time.getMonth()+1)).slice(-2);
+            var start_day=("0"+start_time.getDate()).slice(-2);
+            var start_year=start_time.getFullYear();
+            var start_today=(start_year)+"-"+(start_month)+"-"+(start_day);
+            $("#query_st").val(start_today);
+
+        })
+</script>
+</body>
+</html>

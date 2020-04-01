@@ -1,0 +1,120 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="/static/select2-develop/dist/js/select2.min.js"></script>
+        <script src="/static/select2-develop/dist/js/i18n/zh-CN.js"></script>
+    <link href="/static/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 style="text-align: center;background:#5CACEE">脚本提交</h2>
+    </div>
+    <div class="row" id="devid_id">
+        <div class="col-lg-3">
+            <label>选择脚本名字：</label></label><select name="job_name" id="job_name"class="form-control">
+                <option value="get_cpu_mem_job">get_cpu_mem_job</option>
+                <option value="network_test">network_test</option>
+                <option value="monitor_test">monitor_test</option>
+                 <option value="mERP_AutoTest">mERP_AutoTest</option>
+            <option value="AS_Get_Sku">AS_Get_Sku</option>
+            <option value="CM_Get_Sku">CM_Get_Sku</option>
+            </select>
+            </div>
+               			<div class="col-lg-3">
+            <label>选择设备ID:</label><select name="dev_id" id="dev_id"class="form-control" multiple="multiple" >
+                            <option value="2012" >2012</option>
+                            <option value="2001" >2001</option>
+                            <option value="1049" >1049</option>
+                            <option value="2003" >2003</option>
+                            <option value="2017" >2017</option>
+                            <option value="12051" >12051</option>
+                            <option value="10061" >10061</option>
+                            <option value="2016" >2016</option>
+                            <option value="12052" >12052</option>
+                            <option value="3069" >3069</option>
+                            <option value="2030">2030</option>
+			</select>
+			</div>
+        <div class="col-lg-3">
+            <label>选择环境:</label><select name="dev_env" id="dev_env"class="form-control" >
+                <option value="1" >生产环境</option>
+                <option value="0" >测试环境</option>
+			</select>
+			</div>
+         </div>
+        <div class="row">
+        <div class="col-lg-3">
+            <button id="run_job_id">确定</button>
+            </div>
+            </div>
+
+
+</div>
+
+
+<script>
+
+                        $("#dev_id").select2({
+        tags: true,
+    });
+
+        $("#run_job_id").click (function () {
+            var run_job_id=$("#job_name").val();
+            var run_env=$("#dev_env").val();
+            var dev_id_list= new Array();
+            var obj_dev_id=document.getElementById("dev_id");
+            var dev_options=obj_dev_id.options;
+            for (var i=0;i<dev_options.length;i++){
+                if (dev_options[i].selected){
+                    dev_id_list.push(dev_options[i].value);
+            }
+        }
+            $.ajax(
+                {
+                    url:"run_job_select",
+                    type:'POST',
+                    data:JSON.stringify({
+                        job_name:run_job_id,
+                        dev_list: dev_id_list,
+                        dev_env:run_env
+            }),
+            contentType:"application/json",
+            success:function (respons_date) {
+                alert(respons_date)
+            }
+        })
+                });
+
+                            $(document).ready(function () {
+                        var time=new Date(Date());
+            time.setDate(time.getDate()+1);
+            var day=("0"+time.getDate()).slice(-2);
+            var month=("0"+(time.getMonth()+1)).slice(-2);
+            var year=time.getFullYear()
+            var today=(year)+"-"+(month)+"-"+(day);
+            $("#query_et").val(today);
+            var start_time=new Date(today);
+            start_time.setDate(start_time.getDate()-3);
+            var start_month=("0"+(start_time.getMonth()+1)).slice(-2);
+            var start_day=("0"+start_time.getDate()).slice(-2);
+            var start_year=start_time.getFullYear();
+            var start_today=(start_year)+"-"+(start_month)+"-"+(start_day);
+            $("#query_st").val(start_today);
+
+        })
+
+
+
+</script>
+
+</body>
+</html>
