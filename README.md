@@ -14,4 +14,8 @@ django+mysql+celery
 2、通过celery beat定期执行监控系统性能脚本
 3、集成测试工具
 `````
+`````
+四、安装环境：
+linux或者windows
+`````
 
